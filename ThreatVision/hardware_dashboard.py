@@ -462,14 +462,20 @@ def render_hardware_dashboard(autoencoder) -> None:
 
     # ── System Metrics (psutil) ────────────────────────────────────────────────
     import psutil
-    cpu_pct = psutil.cpu_percent()
+
+    # Ensure psutil has a baseline reference for CPU percent, then sample with a short non-blocking interval.
+    if not st.session_state.get("psutil_cpu_initialized", False):
+        psutil.cpu_percent(interval=None)
+        st.session_state["psutil_cpu_initialized"] = True
+
+    cpu_pct = psutil.cpu_percent(interval=0.2)
     mem_info = psutil.virtual_memory()
     # Handle environment where disk_usage('/') might error on windows. Use primary drive.
     try:
         disk_info = psutil.disk_usage('/')
-    except:
+    except Exception:
         disk_info = psutil.disk_usage('C:\\')
-    
+
     with glass_card():
         section_header("💻 System Hardware Metrics (Real-Time)")
         c1, c2, c3 = st.columns(3)
