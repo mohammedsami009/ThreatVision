@@ -402,22 +402,10 @@ def render_fleet_page():
 
 def render_vibex_page():
     st.markdown("# Realtime ThreatVision Integration", unsafe_allow_html=True)
-    st.markdown("This page hosts the Vibex network IDS dashboard in an embedded iframe; the rest of ThreatVision remains independent.")
-
     started, message = start_vibex_dashboard()
-    if started:
-        st.success(message)
-    else:
+    if not started:
         st.error(f"Failed to start Vibex dashboard: {message}")
 
-    st.markdown(
-        "<p>Once active, access via embedded window below. If the frame remains blank, run Vibex manually in another terminal:</p>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "<ul><li><code>cd d:/userfiles/Desktop/ThreatVision/vibex</code></li><li><code>python main.py</code></li></ul>",
-        unsafe_allow_html=True,
-    )
 
     st.markdown(
         "<iframe src='http://localhost:8050' width='100%' height='860' frameborder='0'></iframe>",

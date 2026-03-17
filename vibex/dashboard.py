@@ -184,6 +184,8 @@ def update(_):
         timeline = list(store["timeline"])
         mal_rows = list(store["malicious"])
 
+    print(f"[dashboard] update: total={total} mal={mal} benign={benign} timeline={len(timeline)} packets={len(store['packets'])}")
+
     def num(value, color):
         return html.Span(str(value),
                          style={"fontSize": "24px", "fontWeight": "500", "color": color})

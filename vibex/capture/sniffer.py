@@ -38,12 +38,16 @@ def start_sniffing(if_bundle, ae_bundle, lstm_bundle):
         display_result(pkt.summary(), result)
         if use_dashboard:
             src_ip, dst_ip, protocol = _parse_pkt(pkt)
-            record_packet(
-                pkt_summary=pkt.summary(), src_ip=src_ip, dst_ip=dst_ip,
-                protocol=protocol, if_result=result["isolation_forest"],
-                ae_result=result["autoencoder"], lstm_result=result["lstm"],
-                votes=result["votes"],
-                verdict="MALICIOUS" if result["is_malicious"] else "BENIGN",
-            )
+            print(f"[sniffer] record_packet -> {src_ip} {dst_ip} {protocol} mal={result['is_malicious']} votes={result['votes']}")
+            try:
+                record_packet(
+                    pkt_summary=pkt.summary(), src_ip=src_ip, dst_ip=dst_ip,
+                    protocol=protocol, if_result=result["isolation_forest"],
+                    ae_result=result["autoencoder"], lstm_result=result["lstm"],
+                    votes=result["votes"],
+                    verdict="MALICIOUS" if result["is_malicious"] else "BENIGN",
+                )
+            except Exception as e:
+                print(f"[sniffer] record_packet exception: {e}")
 
     sniff(prn=_callback, store=False)

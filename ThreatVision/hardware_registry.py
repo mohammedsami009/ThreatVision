@@ -17,10 +17,10 @@ import time
 
 HARDWARE_REGISTRY: dict[str, dict] = {
     "HW-001": {
-        "name":     "DELL 5509/ ANDROID S21FE",
-        "type":     "DELL/Android Smartphone",
+        "name":     "Lenovo_009",
+        "type":     "Laptop",
         "sector":   "LIVE",
-        "icon":     "📱",
+        "icon":     "💻",
         "mac":      "",          # filled at runtime from UI
         "iface":    "",          # filled at runtime from UI
         "baseline": [0.5, 0.5, 0.5, 0.5],   # updated by calibrate_baseline()

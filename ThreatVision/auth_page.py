@@ -14,7 +14,6 @@ def render_login_page() -> None:
                 <h1 style="font-family: 'Source Code Pro', monospace; font-size: 5rem; font-weight: 800; color: #00ff41; text-shadow: 0 0 30px rgba(0,255,65,0.6); margin-bottom: 0; line-height: 1;">THREATVISION</h1>
                 <div style="background: rgba(0,255,65,0.1); display: inline-block; padding: 4px 15px; border-radius: 4px; margin-top: 10px; border: 1px solid rgba(0,255,65,0.3);">
                     <span style="font-family: 'Source Code Pro', monospace; font-size: 0.9rem; color: #00ff41; letter-spacing: 3px; text-transform: uppercase;">THREAT INTELLIGENCE PLATFORM</span><br>
-                    <span style="font-family: 'Source Code Pro', monospace; font-size: 0.75rem; color: #00ff41; opacity: 0.8; letter-spacing: 1px;">(Mathematical Clone)</span>
                 </div>
             </div>
         """, unsafe_allow_html=True)
